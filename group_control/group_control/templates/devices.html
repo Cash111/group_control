@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备列表</title>
+</head>
+<body>
+    <form action="/devices-select" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+    选择执行设备<br /><br />
+        {% for device in devices_list %}
+        <p><label><input name="device_{{ devices_list.index(device) }}" type="checkbox" value="{{ device }}" />{{ device }}</label></p>
+        {% endfor %}
+
+    <div>
+        <input type="submit" value="提交" />
+    </div>
+    </form>
+</body>
+<br>
+<a href="/">返回首页</a>
+</html>

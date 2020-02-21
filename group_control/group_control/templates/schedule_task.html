@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>任务执行计划</title>
+</head>
+<body>
+    <div>
+          待执行脚本列表<br>
+        <table border="0">
+            <tr>
+                <th>顺序</th>
+                <th>脚本</th>
+                <th>执行时长</th>
+            </tr>
+            {% for index, sc_info in scripts.items() %}
+            <tr>
+                <th>{{index}}</th>
+                <th>{{sc_info['script']}}</th>
+                <th>{{sc_info['duration']}}</th>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="/scripts-select">选择脚本</a>
+    </div>
+    <br>
+    <br>
+
+<div>
+    已选择设备列表<br>
+    <table border="0">
+            <tr>
+                <th>设备</th>
+                <th>设备ip</th>
+            </tr>
+            {% for device, wlan_ip in devices.items() %}
+            <tr>
+                <th>{{device}}</th>
+                <th>{{wlan_ip}}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    <br>
+    <a href="/devices-select">选择设备</a>
+</div>
+</body>
+<br>
+<a href="/start-scripts">执行脚本</a>
+<br>
+<a href="/">返回首页</a>
+</html>

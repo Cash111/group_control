@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理脚本</title>
+</head>
+<body>
+    <h1>管理脚本</h1>
+    <form id="scripts" name="scripts" action="/scripts-select" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+    选择脚本 <br /><br />
+        {% for script in scripts_list %}
+        <p>
+            <input id="{{ script }}" name="{{ script }}" type="checkbox" onclick="inputDuration(id)" />{{ script }}
+        </p>
+        {% endfor %}
+
+        <div>
+            <button onclick="checkForm()">提交选择</button>
+        </div>
+    </form>
+    <div>
+        <button onclick="window.location.href='/'">返回首页</button>
+    </div>
+<script>
+    function inputDuration(id) {
+        var inputText = document.getElementById(id + 'text');
+        if (inputText != null){
+            return
+        }
+        var inputTag = document.getElementById(id);
+        var fatherNode = inputTag.parentNode;
+        var text = document.createElement('input');
+        text.type = 'text';
+        text.id = id + 'text';
+        fatherNode.appendChild(text);
+    }
+
+    function checkForm() {
+        var form = document.getElementById('scripts');
+        var inputNodes = form.getElementsByTagName('input');
+        for (var i = 0; i < inputNodes.length; i++) {
+            var tagId = inputNodes[i].id;
+            if (tagId != null) {
+                if (tagId.search("text") == -1) {
+                    var selNode = document.getElementById(tagId);
+                    var textNode = document.getElementById(tagId + 'text');
+                    if(selNode != null && textNode != null){
+                        selNode.value = textNode.value
+                    }
+                }
+            }
+            // alert(inputNodes[i].value);
+        }
+        form.submit();
+    }
+</script>
+</body>
+<br>
+<a href="/">返回首页</a>
+</html>
